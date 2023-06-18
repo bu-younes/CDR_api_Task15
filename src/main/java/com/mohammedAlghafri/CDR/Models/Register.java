@@ -24,6 +24,13 @@ public class Register extends BaseEntity {
 
     String email;
 
+    String caller_number;
+
+    String receiver_number;
+
+    String duration;
+
+    String timestamp;
 
 
 

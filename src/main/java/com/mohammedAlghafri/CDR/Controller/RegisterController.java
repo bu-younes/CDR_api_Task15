@@ -41,9 +41,15 @@ public class RegisterController {
         register.setUsername(registerRequestObject.getUsername());
         register.setPassword(registerRequestObject.getPassword());
         register.setEmail(registerRequestObject.getEmail());
+        register.setCaller_number("1234567890");
+        register.setReceiver_number("9876543210");
+        register.setDuration("180");
+        register.setTimestamp("2023-06-16T10:30:00Z");
 
 
 
+
+        register.setUpdatedDate(new Date());
         register.setCreatedDate(new Date());
         register.setIsActive(true);
         registerService.saveRegister(register);
