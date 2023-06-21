@@ -19,4 +19,5 @@ public class GetCDRsRequestObject {
     String duration;
 
     String timestamp;
+
 }

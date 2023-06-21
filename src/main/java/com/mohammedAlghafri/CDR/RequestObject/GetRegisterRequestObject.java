@@ -16,11 +16,5 @@ public class GetRegisterRequestObject {
 
     String email;
 
-    String caller_number;
 
-    String receiver_number;
-
-    String duration;
-
-    String timestamp;
 }
