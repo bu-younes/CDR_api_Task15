@@ -11,7 +11,6 @@ import java.util.Date;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "register")
 
 public class RegisterController {
 
@@ -24,7 +23,7 @@ public class RegisterController {
         createRegister(registerRequestObject);
     }
 
-    @RequestMapping("get")
+    @RequestMapping("get/register")
     public List<Register> getRegister() {
         return registerService.getRegister();
     }
@@ -41,20 +40,13 @@ public class RegisterController {
         register.setUsername(registerRequestObject.getUsername());
         register.setPassword(registerRequestObject.getPassword());
         register.setEmail(registerRequestObject.getEmail());
-
-
-
-
-
         register.setUpdatedDate(new Date());
         register.setCreatedDate(new Date());
         register.setIsActive(true);
         registerService.saveRegister(register);
 
     }
-
-
-    }
+}
 
 
 
