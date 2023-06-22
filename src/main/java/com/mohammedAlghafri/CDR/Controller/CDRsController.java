@@ -58,8 +58,6 @@ public class CDRsController {
         }
         return cdrResponses;
     }
-
-
     @RequestMapping("/api/analytics/call_durations")
     public ResponseEntity<Map<String, Object>> getCdrs(){
         List<CDRs> getCdrs = cdrsService.getCdrs();
@@ -75,7 +73,6 @@ public class CDRsController {
         response.put("total_calls", totalCalls);
         return ResponseEntity.ok(response);
     }
-
 
 
     public void createCDRs(GetCDRsRequestObject cdRsRequestObject) {
