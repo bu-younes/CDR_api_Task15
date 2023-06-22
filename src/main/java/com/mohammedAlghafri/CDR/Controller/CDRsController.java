@@ -4,6 +4,7 @@ import com.mohammedAlghafri.CDR.Models.CDRs;
 import com.mohammedAlghafri.CDR.RequestObject.GetCDRsRequestObject;
 import com.mohammedAlghafri.CDR.ResponseObjects.GetCDRsResponse;
 import com.mohammedAlghafri.CDR.Service.CDRsService;
+import com.mohammedAlghafri.CDR.Update.CDRsUpdate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -72,6 +73,19 @@ public class CDRsController {
         response.put("average_duration", average_duration);
         response.put("total_calls", totalCalls);
         return ResponseEntity.ok(response);
+    }
+
+
+
+
+    @PutMapping("/api/cdrs/{cdrId}")
+    public ResponseEntity<String> cdrModification(@PathVariable Long cdrId, @RequestBody CDRsUpdate update) {
+        String callerNumber =  update.getCallerNumber();
+        String receiverNumber = update.getReceiverNumber();
+        int duration = update.getDuration();
+        String timestamp = update.getTimestamp();
+        cdrsService.cdrsupdate(cdrId, callerNumber,receiverNumber,duration,timestamp);
+        return ResponseEntity.ok("cdr Modification successfully");
     }
 
 

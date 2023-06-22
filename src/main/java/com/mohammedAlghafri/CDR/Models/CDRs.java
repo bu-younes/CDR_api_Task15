@@ -1,22 +1,21 @@
 package com.mohammedAlghafri.CDR.Models;
 
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
+import org.apache.catalina.User;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
-@Data
 public class CDRs extends BaseEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     Long id;
+
 
     String callerNumber;
 
@@ -25,4 +24,6 @@ public class CDRs extends BaseEntity{
     Integer duration;
 
     String timestamp;
+
+
 }

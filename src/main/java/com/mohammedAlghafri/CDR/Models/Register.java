@@ -1,17 +1,16 @@
 package com.mohammedAlghafri.CDR.Models;
 
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
+
 @Getter
 @Setter
 @Entity
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Register extends BaseEntity {
 
     @Id
@@ -23,6 +22,5 @@ public class Register extends BaseEntity {
     String password;
 
     String email;
-
 
 }

@@ -48,4 +48,21 @@ public class CDRsService {
     }
 
 
+
+
+    public void cdrsupdate(Long cdeId, String callerNumber, String receiverNumber, int duration, String timestamp) {
+        Optional<CDRs> optionalCDRs = cdrsRepository.findById(cdeId);
+        if (optionalCDRs.isPresent()) {
+            CDRs cdrs = optionalCDRs.get();
+            cdrs.setCallerNumber(callerNumber);
+            cdrs.setReceiverNumber(receiverNumber);
+            cdrs.setDuration(duration);
+            cdrs.setTimestamp(timestamp);
+            cdrsRepository.save(cdrs);
+        } else {
+            System.out.println("ERROR");
+        }
+    }
+
+
 }
