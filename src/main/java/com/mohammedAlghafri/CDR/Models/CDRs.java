@@ -18,9 +18,9 @@ public class CDRs extends BaseEntity{
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     Long id;
 
-    String caller_number;
+    String callerNumber;
 
-    String receiver_number;
+    String receiverNumber;
 
     String duration;
 

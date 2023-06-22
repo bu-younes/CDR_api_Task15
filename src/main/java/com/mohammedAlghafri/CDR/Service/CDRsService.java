@@ -26,7 +26,7 @@ public class CDRsService {
         if(!optionalCDRs.isEmpty())
         {
             CDRs cdRs =  optionalCDRs.get();
-            GetCDRsResponse cdRsResponse = new GetCDRsResponse(cdRs.getCaller_number(), cdRs.getReceiver_number(), cdRs.getDuration(), cdRs.getTimestamp());
+            GetCDRsResponse cdRsResponse = new GetCDRsResponse(cdRs.getCallerNumber(), cdRs.getReceiverNumber(), cdRs.getDuration(), cdRs.getTimestamp());
             return cdRsResponse;
         }
 
@@ -35,6 +35,10 @@ public class CDRsService {
     }
 
 
+
+    public List<CDRs> searchCDRs(String callerNumber, String timestampFrom, String timestampTo) {
+        return cdrsRepository.findByCallerNumberAndTimestampBetween(callerNumber, timestampFrom, timestampTo);
+    }
 
     public void saveCDRs(CDRs cdrs) {cdrsRepository.save(cdrs); }
 }
