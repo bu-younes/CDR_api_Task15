@@ -3,6 +3,7 @@ package com.mohammedAlghafri.CDR.Service;
 import com.mohammedAlghafri.CDR.Models.CDRs;
 import com.mohammedAlghafri.CDR.Repository.CDRsRepository;
 import com.mohammedAlghafri.CDR.ResponseObjects.GetCDRsResponse;
+import com.mohammedAlghafri.CDR.ResponseObjects.UserSummaryReport;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -45,6 +46,22 @@ public class CDRsService {
 
     public List<CDRs> getCdrs() {
         return cdrsRepository.findAll();
+    }
+
+
+
+
+
+    public UserSummaryReport getUserSummaryReport(String username) {
+        List<CDRs> userCDRs = cdrsRepository.findByUsername(username);
+        int totalCalls = userCDRs.size();
+        int totalDuration = 0;
+        for (CDRs cdr : userCDRs) {
+            totalDuration += cdr.getDuration();
+        }
+        double averageDuration = totalDuration / (double) totalCalls;
+
+        return new UserSummaryReport(username, totalCalls, totalDuration, averageDuration);
     }
 
 

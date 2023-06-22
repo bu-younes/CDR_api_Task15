@@ -3,6 +3,7 @@ package com.mohammedAlghafri.CDR.Controller;
 import com.mohammedAlghafri.CDR.Models.CDRs;
 import com.mohammedAlghafri.CDR.RequestObject.GetCDRsRequestObject;
 import com.mohammedAlghafri.CDR.ResponseObjects.GetCDRsResponse;
+import com.mohammedAlghafri.CDR.ResponseObjects.UserSummaryReport;
 import com.mohammedAlghafri.CDR.Service.CDRsService;
 import com.mohammedAlghafri.CDR.Update.CDRsUpdate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -87,6 +88,16 @@ public class CDRsController {
         cdrsService.cdrsupdate(cdrId, callerNumber,receiverNumber,duration,timestamp);
         return ResponseEntity.ok("cdr Modification successfully");
     }
+
+
+
+
+
+        @GetMapping("/api/reports/user_summary")
+        public ResponseEntity<UserSummaryReport> getUserSummaryReport(@RequestParam("username") String username) {
+            UserSummaryReport report = cdrsService.getUserSummaryReport(username);
+            return ResponseEntity.ok(report);
+        }
 
 
     public void createCDRs(GetCDRsRequestObject cdRsRequestObject) {

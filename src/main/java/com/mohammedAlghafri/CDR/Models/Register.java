@@ -3,7 +3,6 @@ package com.mohammedAlghafri.CDR.Models;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Getter
 @Setter

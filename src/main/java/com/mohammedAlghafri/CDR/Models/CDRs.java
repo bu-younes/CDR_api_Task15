@@ -1,7 +1,6 @@
 package com.mohammedAlghafri.CDR.Models;
 
 import lombok.*;
-import org.apache.catalina.User;
 
 import javax.persistence.*;
 
@@ -16,7 +15,15 @@ public class CDRs extends BaseEntity{
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     Long id;
 
+    String username;
 
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
     String callerNumber;
 
     String receiverNumber;
