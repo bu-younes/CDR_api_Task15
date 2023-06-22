@@ -32,5 +32,9 @@ public class CDRs extends BaseEntity{
 
     String timestamp;
 
+    Integer month;
+
+    Integer year;
+
 
 }

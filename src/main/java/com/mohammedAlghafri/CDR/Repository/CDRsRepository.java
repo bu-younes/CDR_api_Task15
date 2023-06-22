@@ -11,5 +11,6 @@ public interface CDRsRepository extends JpaRepository<CDRs, Long> {
 
     List<CDRs> findByCallerNumberAndTimestampBetween(String callerNumber, String timestampFrom, String timestampTo);
     List<CDRs> findByUsername(String username);
+    List<CDRs> findByUsernameAndMonthAndYear(String username, int month, int year);
 
 }

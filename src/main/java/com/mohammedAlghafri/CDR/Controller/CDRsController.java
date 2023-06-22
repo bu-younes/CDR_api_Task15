@@ -3,6 +3,7 @@ package com.mohammedAlghafri.CDR.Controller;
 import com.mohammedAlghafri.CDR.Models.CDRs;
 import com.mohammedAlghafri.CDR.RequestObject.GetCDRsRequestObject;
 import com.mohammedAlghafri.CDR.ResponseObjects.GetCDRsResponse;
+import com.mohammedAlghafri.CDR.ResponseObjects.UserStatement;
 import com.mohammedAlghafri.CDR.ResponseObjects.UserSummaryReport;
 import com.mohammedAlghafri.CDR.Service.CDRsService;
 import com.mohammedAlghafri.CDR.Update.CDRsUpdate;
@@ -98,6 +99,19 @@ public class CDRsController {
             UserSummaryReport report = cdrsService.getUserSummaryReport(username);
             return ResponseEntity.ok(report);
         }
+
+
+
+
+
+    @GetMapping("/api/billing/user_statement")
+    public ResponseEntity<UserStatement> getUserStatement(
+            @RequestParam("username") String username,
+            @RequestParam("month") int month,
+            @RequestParam("year") int year) {
+        UserStatement statement = cdrsService.getUserStatement(username, month, year);
+        return ResponseEntity.ok(statement);
+    }
 
 
     public void createCDRs(GetCDRsRequestObject cdRsRequestObject) {
