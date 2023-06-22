@@ -22,7 +22,7 @@ public class CDRs extends BaseEntity{
 
     String receiverNumber;
 
-    String duration;
+    Integer duration;
 
     String timestamp;
 }

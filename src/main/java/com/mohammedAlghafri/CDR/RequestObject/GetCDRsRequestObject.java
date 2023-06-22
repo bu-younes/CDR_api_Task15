@@ -17,7 +17,7 @@ public class GetCDRsRequestObject {
 
     String receiver_number;
 
-    String duration;
+    Integer duration;
 
     String timestamp;
 

@@ -15,7 +15,7 @@ public class GetCDRsResponse {
 
     String receiver_number;
 
-    String duration;
+    Integer duration;
 
     String timestamp;
 }

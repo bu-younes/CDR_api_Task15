@@ -41,4 +41,11 @@ public class CDRsService {
     }
 
     public void saveCDRs(CDRs cdrs) {cdrsRepository.save(cdrs); }
+
+
+    public List<CDRs> getCdrs() {
+        return cdrsRepository.findAll();
+    }
+
+
 }

@@ -8,9 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @RestController
 public class CDRsController {
@@ -38,21 +36,6 @@ public class CDRsController {
 
 
 
-
-    public void createCDRs(GetCDRsRequestObject cdRsRequestObject) {
-
-        CDRs cdrs = new CDRs();
-
-        cdrs.setCallerNumber(cdRsRequestObject.getCaller_number());
-        cdrs.setReceiverNumber(cdRsRequestObject.getReceiver_number());
-        cdrs.setDuration(cdRsRequestObject.getDuration());
-        cdrs.setTimestamp(cdRsRequestObject.getTimestamp());
-        cdrs.setUpdatedDate(new Date());
-        cdrs.setCreatedDate(new Date());
-        cdrs.setIsActive(true);
-        cdrsService.saveCDRs(cdrs);
-    }
-
     @GetMapping("/api/cdrs")
     public ResponseEntity<List<GetCDRsResponse>> searchCDRs(
             @RequestParam("caller_number") String callerNumber,
@@ -75,4 +58,39 @@ public class CDRsController {
         }
         return cdrResponses;
     }
+
+
+    @RequestMapping("/api/analytics/call_durations")
+    public ResponseEntity<Map<String, Object>> getCdrs(){
+        List<CDRs> getCdrs = cdrsService.getCdrs();
+        Integer totalCalls =0;
+        Integer totalDuration = 0;
+        for( CDRs cdrs : getCdrs){
+            totalCalls++;
+            totalDuration = totalDuration + cdrs.getDuration();
+        }
+        Double average_duration = (double) (totalDuration/totalCalls);
+        Map<String, Object> response = new HashMap<>();
+        response.put("average_duration", average_duration);
+        response.put("total_calls", totalCalls);
+        return ResponseEntity.ok(response);
+    }
+
+
+
+    public void createCDRs(GetCDRsRequestObject cdRsRequestObject) {
+
+        CDRs cdrs = new CDRs();
+
+        cdrs.setCallerNumber(cdRsRequestObject.getCaller_number());
+        cdrs.setReceiverNumber(cdRsRequestObject.getReceiver_number());
+        cdrs.setDuration(cdRsRequestObject.getDuration());
+        cdrs.setTimestamp(cdRsRequestObject.getTimestamp());
+        cdrs.setUpdatedDate(new Date());
+        cdrs.setCreatedDate(new Date());
+        cdrs.setIsActive(true);
+        cdrsService.saveCDRs(cdrs);
+    }
+
+
 }
